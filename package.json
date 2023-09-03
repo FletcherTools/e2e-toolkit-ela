@@ -1,0 +1,37 @@
+{
+  "name": "e2e-helpers-ela",
+  "version": "0.0.1",
+  "description": "Element Lookup Assistant",
+  "source": "src/index.ts",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
+  "isLibrary": true,
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@parcel/packager-ts": "^2.9.3",
+    "@parcel/transformer-sass": "^2.9.3",
+    "@parcel/transformer-typescript-types": "^2.9.3",
+    "@types/jquery": "^3.5.18",
+    "cypress": "^13.1.0",
+    "parcel": "^2.9.3"
+  },
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build",
+    "cypress:open": "npx cypress open --e2e --browser electron --config-file cypress/config.ts",
+    "cypress:run": "npx cypress run --config-file cypress/config.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FletcherTools/e2e-helpers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FletcherTools/e2e-helpers/issues"
+  },
+  "homepage": "https://github.com/FletcherTools/e2e-helpers#readme"
+}

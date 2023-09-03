@@ -1,0 +1,72 @@
+.ela-active [data-test-id], .ela-active [data-test-pseudo-id] {
+  outline-offset: -1px;
+  outline-width: 1px;
+  outline-style: dashed;
+}
+
+.ela-active [data-test-id]:hover, .ela-active [data-test-pseudo-id]:hover {
+  overflow: visible;
+}
+
+.ela-active [data-test-id]:hover:before, .ela-active [data-test-pseudo-id]:hover:before {
+  cursor: copy;
+  transition: background-color .3s;
+  z-index: 100 !important;
+  color: #fff !important;
+  width: max-content !important;
+  padding: 3px 6px !important;
+  font: 12px monospace !important;
+  position: absolute !important;
+}
+
+.ela-active [data-test-id] {
+  outline-color: #ab88e34d;
+}
+
+.ela-active [data-test-id]:hover {
+  outline-color: #ab88e399;
+}
+
+.ela-active [data-test-id]:hover:before {
+  background-color: #ab88e399;
+  content: "%" attr(data-test-id) attr(data-test-params) !important;
+}
+
+.ela-active [data-test-id]:hover:not(:has([data-test-id]:hover)) {
+  outline-color: #ab88e3;
+}
+
+.ela-active [data-test-id]:hover:not(:has([data-test-id]:hover)):before {
+  background-color: #ab88e3;
+}
+
+.ela-active [data-test-pseudo-id] {
+  outline-color: #d865a94d;
+}
+
+.ela-active [data-test-pseudo-id]:hover {
+  outline-color: #d865a999;
+}
+
+.ela-active [data-test-pseudo-id]:hover:before {
+  background-color: #d865a999;
+  content: "%%" attr(data-test-pseudo-id) attr(data-test-params) !important;
+}
+
+.ela-active [data-test-pseudo-id]:hover[data-test-pseudo-name]:before {
+  content: "%%" attr(data-test-pseudo-id) "=" attr(data-test-pseudo-name) attr(data-test-params) !important;
+}
+
+.ela-active [data-test-pseudo-id]:hover:not(:has([data-test-pseudo-id]:hover)) {
+  outline-color: #d865a9;
+}
+
+.ela-active [data-test-pseudo-id]:hover:not(:has([data-test-pseudo-id]:hover)):before {
+  background-color: #d865a9;
+}
+
+.ela-active.ela-inverted [data-test-id]:before, .ela-active.ela-inverted [data-test-pseudo-id]:before {
+  transform: translateY(-100%);
+}
+
+/*# sourceMappingURL=main.css.map */

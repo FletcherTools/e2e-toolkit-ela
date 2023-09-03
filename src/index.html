@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Element Lookup Assistant Playground</title>
+    <style>
+        body {
+            padding: 1rem 4rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Element Lookup Assistant Playground</h1>
+    <h2>Selectors:</h2>
+    <style>
+        .selectors {
+            display: flex;
+            list-style: none;
+            justify-content: space-between;
+            /*flex-wrap: wrap;*/
+            margin: 0;
+            padding: 0;
+            gap: 1rem;
+        }
+        .selectors > * {
+            flex-basis: 20rem;
+            padding: 2rem;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .selectors > * > strong {
+            display: block;
+            font-size: 22px;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+    <ul data-test-id="wrapper" class="selectors">
+        <li data-test-id="first">
+            <strong>First</strong>
+            Test ID Selector
+        </li>
+        <li data-test-id="second"
+            data-test-disabled="false"
+            data-test-disabled-spec="true|false">
+            <strong>Second</strong>
+            Test Param Selector
+        </li>
+        <li class="third">
+            <strong>Third</strong>
+            <span>Class Selector</span>
+        </li>
+        <li class="fourth">
+            <strong>Fourth</strong>
+            Class Selector
+        </li>
+    </ul>
+    <script type="module">
+        import('./index.ts').then(({ ELAComponent }) => {
+            ELAComponent({
+                pseudoSelectorMap: {
+                    'third=$name': '.third',
+                    'fourth=$name': '.fourth:has(strong:contains($name), +p)'
+                }
+            });
+        })
+    </script>
+</body>
+</html>
