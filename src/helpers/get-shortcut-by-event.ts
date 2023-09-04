@@ -14,5 +14,5 @@ export function getShortcutByEvent(e: KeyboardEvent): string {
 
     return [...specialPart, key].filter(Boolean)
         .join('+')
-        .toLowerCase();
+        .toUpperCase();
 }

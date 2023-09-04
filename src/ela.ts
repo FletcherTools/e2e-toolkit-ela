@@ -1,7 +1,7 @@
 import './ela.scss';
 
 import * as $ from 'jquery';
-import { getShortcutByEvent } from './helpers';
+import { extendConfig, getShortcutByEvent } from './helpers';
 
 const HELPER_ACTIVE_CLASS = 'ela-active';
 const TOOLTIP_INVERTED_CLASS = 'ela-inverted';
@@ -12,18 +12,30 @@ const TEST_PARAMS_ATTR = 'data-test-params';
 const PSEUDO_ID_ATTR = 'data-test-pseudo-id';
 const PSEUDO_NAME_ATTR = 'data-test-pseudo-name';
 
-interface ELAConfig {
-    customSelectorAttr: string;
+export interface ELAConfig {
+    customSelectorPrefix: string
+    pseudoSelectorPrefix: string
+    activateShortcut: string
+    relocateShortcut: string
     pseudoSelectorMap: Record<string, string>
 }
 
-export function ELAComponent(config: ELAConfig) {
-    const {pseudoSelectorMap} = config;
+const defaultConfig: ELAConfig = {
+    customSelectorPrefix: '%',
+    pseudoSelectorPrefix: '%%',
+    activateShortcut: 'ctrl+alt+l',
+    relocateShortcut: 'ctrl+alt+p',
+    pseudoSelectorMap: {}
+};
+
+export function ELAComponent(userConfig: ELAConfig) {
+    const config = extendConfig(defaultConfig, userConfig);
+    const {customSelectorPrefix, pseudoSelectorPrefix, pseudoSelectorMap} = config;
     let attachInterval;
 
-    // @ts-ignore
-    window.$ = $;
     document.addEventListener('keydown', onKeyDown);
+    document.body.style.setProperty('--custom-prefix', `'${customSelectorPrefix}'`)
+    document.body.style.setProperty('--pseudo-prefix', `'${pseudoSelectorPrefix}'`)
 
     return function destroy() {
         onHelperToggle(false);
@@ -36,10 +48,10 @@ export function ELAComponent(config: ELAConfig) {
         const shortcut = getShortcutByEvent(e);
 
         switch (shortcut) {
-            case 'ctrl+alt+t':
+            case config.activateShortcut.toUpperCase():
                 onHelperToggle();
                 break;
-            case 'ctrl+i':
+            case config.relocateShortcut.toUpperCase():
                 onTooltipPositionToggle();
                 break;
         }

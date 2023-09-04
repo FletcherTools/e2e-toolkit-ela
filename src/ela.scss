@@ -1,9 +1,7 @@
 $test-id-attr: 'data-test-id';
 $test-params-attr: 'data-test-params';
-$test-pseudo-attr: 'data-test-pseudo-id';
+$test-pseudo-id-attr: 'data-test-pseudo-id';
 $test-pseudo-name-attr: 'data-test-pseudo-name';
-$custom-prefix: '%';
-$pseudo-prefix: '%%';
 
 $custom-color: #ab88e3;
 $pseudo-color: #d865a9;
@@ -15,7 +13,7 @@ $hover-opacity: 0.6;
 .ela-active {
 
   [#{$test-id-attr}],
-  [#{$test-pseudo-attr}] {
+  [#{$test-pseudo-id-attr}] {
     outline-width: 1px;
     outline-offset: -1px;
     outline-style: dashed;
@@ -45,7 +43,7 @@ $hover-opacity: 0.6;
       outline-color: rgba($custom-color, $hover-opacity);
 
       &:before {
-        content: $custom-prefix attr(#{$test-id-attr}) attr(#{$test-params-attr}) !important;
+        content: var(--custom-prefix) attr(#{$test-id-attr}) attr(#{$test-params-attr}) !important;
         background-color: rgba($custom-color, $hover-opacity);
       }
     }
@@ -58,26 +56,26 @@ $hover-opacity: 0.6;
     }
   }
 
-  [#{$test-pseudo-attr}] {
+  [#{$test-pseudo-id-attr}] {
     outline-color: rgba($pseudo-color, $default-opacity);
 
     &:hover {
       outline-color: rgba($pseudo-color, $hover-opacity);
 
       &:before {
-        content: $pseudo-prefix attr(#{$test-pseudo-attr}) attr(#{$test-params-attr}) !important;;
+        content: var(--pseudo-prefix) attr(#{$test-pseudo-id-attr}) attr(#{$test-params-attr}) !important;;
         background-color: rgba($pseudo-color, $hover-opacity);
       }
 
       &[#{$test-pseudo-name-attr}]:before {
         content:
-          $pseudo-prefix
-          attr(#{$test-pseudo-attr}) '=' attr(#{$test-pseudo-name-attr})
+          var(--pseudo-prefix)
+          attr(#{$test-pseudo-id-attr}) '=' attr(#{$test-pseudo-name-attr})
           attr(#{$test-params-attr}) !important;
       }
     }
 
-    &:hover:not(:has([#{$test-pseudo-attr}]:hover)) {
+    &:hover:not(:has([#{$test-pseudo-id-attr}]:hover)) {
       outline-color: $pseudo-color;
       &:before {
         background-color: $pseudo-color;
@@ -87,7 +85,7 @@ $hover-opacity: 0.6;
 
   &.ela-inverted {
     [#{$test-id-attr}],
-    [#{$test-pseudo-attr}] {
+    [#{$test-pseudo-id-attr}] {
       &:before {
         transform: translateY(-100%);
       }

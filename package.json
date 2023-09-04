@@ -1,22 +1,22 @@
 {
-  "name": "e2e-helpers-ela",
+  "name": "e2e-toolkit-ela",
   "version": "0.0.1",
-  "description": "Element Lookup Assistant",
+  "description": "E2EToolkit: Element Lookup Assistant",
   "source": "src/index.ts",
   "main": "dist/main.js",
   "module": "dist/module.js",
   "isLibrary": true,
   "dependencies": {
-    "jquery": "^3.7.1",
-    "typescript": "^5.2.2"
+    "jquery": "^3.7.1"
   },
   "devDependencies": {
-    "@parcel/packager-ts": "^2.9.3",
-    "@parcel/transformer-sass": "^2.9.3",
-    "@parcel/transformer-typescript-types": "^2.9.3",
     "@types/jquery": "^3.5.18",
     "cypress": "^13.1.0",
-    "parcel": "^2.9.3"
+    "parcel": "^2.9.3",
+    "typescript": "^5.2.2",
+    "@parcel/packager-ts": "^2.9.3",
+    "@parcel/transformer-sass": "^2.9.3",
+    "@parcel/transformer-typescript-types": "^2.9.3"
   },
   "scripts": {
     "dev": "parcel src/index.html",
