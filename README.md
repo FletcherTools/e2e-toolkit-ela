@@ -4,10 +4,18 @@
 
 ### Initialization
 ```ts
-ELAComponent(config);
+import('e2e-toolkit-ela').then(({ ELAComponent }) => {
+    ELAComponent({
+        pseudoSelectorMap: {
+            'third=$name': '.third',
+            'fourth=$name': '.fourth:has(strong:contains($name), + p)'
+        }
+    });
+})
 ```
 
 ### Configuration
+#### Default config
 ```ts
 export interface ELAConfig {
     customSelectorPrefix: string
@@ -16,9 +24,7 @@ export interface ELAConfig {
     relocateShortcut: string
     pseudoSelectorMap: Record<string, string>
 }
-```
-#### Default config
-```ts
+
 const defaultConfig: ELAConfig = {
     customSelectorPrefix: '%',
     pseudoSelectorPrefix: '%%',
@@ -26,7 +32,6 @@ const defaultConfig: ELAConfig = {
     relocateShortcut: 'ctrl+alt+p',
     pseudoSelectorMap: {}
 };
-
 ```
 
 ### Usage
