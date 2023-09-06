@@ -1,6 +1,6 @@
 # E2EToolkit: Element Lookup Assistant
 
-**Element Lookup Assistant** being a part of `e2e-toolkit` allows you to look up a particular element's **test id** very quickly.
+**Element Lookup Assistant** being a part of `e2e-toolkit` allows you to find out a particular element's **test id** very quickly.
 
 ### Initialization
 ```ts
