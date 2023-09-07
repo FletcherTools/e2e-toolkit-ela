@@ -135,22 +135,27 @@ export function ELAComponent(userConfig: ELAConfig) {
     }
 
     function setPseudoNameAttr(el: HTMLElement, selector: string): void {
-        switch (true) {
-            case selector.includes(':contains()'): {
-                const universalSelector = selector
-                    .replace(':contains()', '')
-                    .replace(':has', ' :is');
+        const innerSelector = selector
+            .replace(':has', ' :is')
+            .replace(/^[^\s]+\s/, '');
 
-                const [targetEl] = $(universalSelector).toArray();
+        switch (true) {
+            /* Name from Text Content */
+            case selector.includes(':contains()'): {
+                const targetSelector = innerSelector.replaceAll(':contains()', '');
+                const [targetEl] = targetSelector ? $(el).find(targetSelector).toArray() : [el];
                 const containedText = (targetEl ?? el).textContent.trim().replace(/\s+/g, ' ');
                 const name = `"${containedText}"`;
 
                 el.setAttribute(PSEUDO_NAME_ATTR, name);
                 break;
             }
-            case /\[[a-z0-9_\-]+\]$/.test(selector): {
-                const [,nameAttr] = /\[([a-z0-9_\-]+)\]$/.exec(selector)
-                const name = `"${el.getAttribute(nameAttr)}"`;
+            /* Name from an Attr */
+            case selector.includes('['): {
+                const foundEls = innerSelector ? $(el).find(innerSelector).toArray() : [el];
+                const [,nameAttr] = /\[([a-z0-9_\-]+)\]/.exec(innerSelector)
+                const name = foundEls.map(targetEl => `"${targetEl.getAttribute(nameAttr)}"`).join('|')
+
                 el.setAttribute(PSEUDO_NAME_ATTR, name);
                 break;
             }
