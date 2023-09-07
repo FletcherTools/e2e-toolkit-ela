@@ -23,7 +23,7 @@ body {
 </head>
 <body>
     <h1>Element Lookup Assistant</h1>
-    <h2>Selectors:</h2>
+    <h2>Selectors</h2>
     <style>main {
   flex-direction: column;
   gap: 1rem;
@@ -42,8 +42,9 @@ body {
 .selectors > * {
   background-color: var(--panel-color);
   text-align: center;
+  flex-grow: 1;
   width: 20rem;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 .selectors > * > :is(h4, h5) {
@@ -56,93 +57,46 @@ body {
 
 .selectors > * > p {
   margin-top: .5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   font-size: 16px;
-}
-
-.selectors > * > details {
-  margin-top: .5rem;
-}
-
-.selectors > * > details > summary {
-  cursor: pointer;
-  padding: 4px;
-}
-
-.selectors > * > details > code {
-  color: brown;
-  background-color: #fff;
-  max-width: 100%;
-  overflow-x: scroll;
-}
-
-code {
-  background-color: var(--secondary-panel-color);
-  color: #483d8b;
-  margin: auto;
-  padding: 6px 8px;
-  display: table;
 }
 
 </style>
     <main>
+        <h3>Test ID/Params Selectors</h3>
         <ul data-test-id="wrapper" class="selectors">
             <li data-test-id="first">
                 <h4>First</h4>
                 <p>Test ID Selector</p>
-                <code>[data-test-id="first"]</code>
             </li>
             <li data-test-id="second" data-test-disabled="false" data-test-disabled-spec="true|false">
                 <h4>Second</h4>
                 <p>Test Param Selector</p>
-                <code>[data-test-id="second"][data-test-disabled="false"]</code>
             </li>
+        </ul>
+        <h3>Pseudo Selectors</h3>
+        <ul data-test-id="wrapper" class="selectors">
             <li class="third">
                 <h4>Third</h4>
                 <p>Class Selector</p>
-                <code>.third</code>
-                <details>
-                    <summary>Config</summary>
-                    <code>'third=$name': '.third'</code>
-                </details>
             </li>
             <li class="fourth">
                 <h4>Fourth #1</h4>
                 <p>Text Content Selector</p>
-                <code>.fourth:has(strong:contains("Fourth #1"))</code>
-                <details>
-                    <summary>Config</summary>
-                    <code>'fourth=$name': '.fourth:has(strong:contains($name), em:contains($name))'</code>
-                </details>
             </li>
             <li class="fourth">
                 <h5>Fourth #2</h5>
                 <p>Text Content Selector</p>
-                <code>.fourth:has(em:contains("Fourth #2"))</code>
-                <details>
-                    <summary>Config</summary>
-                    <code>'fourth=$name': '.fourth:has(strong:contains($name), em:contains($name))'</code>
-                </details>
             </li>
             <li class="fifths">
                 <input type="hidden" value="on">
                 <h4>Fifths #1</h4>
                 <p>Attribute Selector</p>
-                <code>.fifths:has(input[value=on])</code>
-                <details>
-                    <summary>Config</summary>
-                    <code>'fifths=$name': '.fifths:has(input[value=$name])'</code>
-                </details>
             </li>
             <li class="fifths">
                 <input type="hidden" value="off">
                 <h4>Fifths #2</h4>
                 <p>Attribute Selector</p>
-                <code>.fifths:has(input[value=off])</code>
-                <details>
-                    <summary>Config</summary>
-                    <code>'fifths=$name': '.fifths:has(input[value=$name])'</code>
-                </details>
             </li>
         </ul>
     </main>
@@ -290,13 +244,13 @@ code {
       this[globalName] = mainExports;
     }
   }
-})({"cle99":[function(require,module,exports) {
+})({"f575p":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "2a535f5906a3719f";
+module.bundle.HMR_BUNDLE_ID = "2f94a47712307bcc";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -721,30 +675,30 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     });
 }
 
-},{}],"cU7VS":[function(require,module,exports) {
+},{}],"c1N46":[function(require,module,exports) {
 require("f991723b7040de8b").then(({ ELAComponent })=>{
     ELAComponent({
         pseudoSelectorMap: {
             "third=$name": ".third",
-            "fourth=$name": ".fourth:has(strong:contains($name), em:contains($name))",
+            "fourth=$name": ".fourth:has(h4:contains($name), h5:contains($name))",
             "fifths=$name": ".fifths:has(input[value=$name])"
         }
     });
 });
 
-},{"f991723b7040de8b":"6E8VP"}],"6E8VP":[function(require,module,exports) {
+},{"f991723b7040de8b":"kYxyI"}],"kYxyI":[function(require,module,exports) {
 module.exports = Promise.all([
-    require("7ac04be5607ba0c7")(require("3ba4cd6a5e439246").getBundleURL("3DivH") + "e2e-helpers-ela.92b91cb6.css" + "?" + Date.now()).catch((err)=>{
+    require("dd3b1c610a3fb126")(require("c77ec505d9ec09b6").getBundleURL("45gMb") + "e2e-helpers-ela.92b91cb6.css" + "?" + Date.now()).catch((err)=>{
         delete module.bundle.cache[module.id];
         throw err;
     }),
-    require("c726e648b1b3964a")(require("3ba4cd6a5e439246").getBundleURL("3DivH") + "e2e-helpers-ela.b71e74eb.js" + "?" + Date.now()).catch((err)=>{
+    require("f4a423c128579a33")(require("c77ec505d9ec09b6").getBundleURL("45gMb") + "e2e-helpers-ela.b71e74eb.js" + "?" + Date.now()).catch((err)=>{
         delete module.bundle.cache[module.id];
         throw err;
     })
 ]).then(()=>module.bundle.root("h7u1C"));
 
-},{"7ac04be5607ba0c7":"1MWPE","3ba4cd6a5e439246":"lgJ39","c726e648b1b3964a":"61B45"}],"1MWPE":[function(require,module,exports) {
+},{"dd3b1c610a3fb126":"1MWPE","c77ec505d9ec09b6":"lgJ39","f4a423c128579a33":"61B45"}],"1MWPE":[function(require,module,exports) {
 "use strict";
 var cacheLoader = require("ae7c5e215a4907e2");
 module.exports = cacheLoader(function(bundle) {
@@ -870,7 +824,7 @@ module.exports = cacheLoader(function(bundle) {
     });
 });
 
-},{"ca2a84f7fa4a3bb0":"j49pS"}]},["cle99","cU7VS"], "cU7VS", "parcelRequire1a84")
+},{"ca2a84f7fa4a3bb0":"j49pS"}]},["f575p","c1N46"], "c1N46", "parcelRequire1a84")
 
 </script>
 </body>

@@ -3,6 +3,7 @@ $test-params-attr: 'data-test-params';
 $test-pseudo-id-attr: 'data-test-pseudo-id';
 $test-pseudo-name-attr: 'data-test-pseudo-name';
 
+$label-font: normal 12px monospace;
 $custom-color: #ab88e3;
 $pseudo-color: #d865a9;
 $default-opacity: 0.3;
@@ -27,7 +28,7 @@ $hover-opacity: 0.6;
         width: max-content !important;
         padding: 3px 6px !important;
         line-height: 1 !important;
-        font: normal 12px monospace !important;
+        font: $label-font !important;
         color: white !important;
         cursor: copy;
 
@@ -43,8 +44,11 @@ $hover-opacity: 0.6;
       outline-color: rgba($custom-color, $hover-opacity);
 
       &:before {
-        content: var(--custom-prefix) attr(#{$test-id-attr}) attr(#{$test-params-attr}) !important;
         background-color: rgba($custom-color, $hover-opacity);
+        content:
+          var(--custom-prefix)
+          attr(#{$test-id-attr})
+          attr(#{$test-params-attr}) !important;
       }
     }
 
@@ -63,8 +67,11 @@ $hover-opacity: 0.6;
       outline-color: rgba($pseudo-color, $hover-opacity);
 
       &:before {
-        content: var(--pseudo-prefix) attr(#{$test-pseudo-id-attr}) attr(#{$test-params-attr}) !important;;
         background-color: rgba($pseudo-color, $hover-opacity);
+        content:
+          var(--pseudo-prefix)
+          attr(#{$test-pseudo-id-attr})
+          attr(#{$test-params-attr}) !important;
       }
 
       &[#{$test-pseudo-name-attr}]:before {
