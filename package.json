@@ -1,12 +1,13 @@
 {
-  "name": "e2e-toolkit-ela",
-  "version": "0.0.1",
+  "name": "@fletchers-tools/e2e-toolkit-ela",
+  "version": "1.0.1",
   "description": "E2EToolkit: Element Lookup Assistant. A tool that helps to figure out element's test-id without digging into the elements' tree.",
   "source": "src/index.ts",
   "main": "dist/main.js",
   "module": "dist/module.js",
   "isLibrary": true,
   "dependencies": {
+    "husky": "^9.1.7",
     "jquery": "^3.7.1"
   },
   "devDependencies": {
@@ -22,16 +23,24 @@
     "dev": "parcel src/index.html",
     "build": "parcel build",
     "cypress:open": "npx cypress open --e2e --browser electron --config-file cypress/config.ts",
-    "cypress:run": "npx cypress run --config-file cypress/config.ts"
+    "cypress:run": "npx cypress run --config-file cypress/config.ts",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FletcherTools/e2e-helpers.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Fletcher Lind",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/FletcherTools/e2e-helpers/issues"
   },
-  "homepage": "https://github.com/FletcherTools/e2e-helpers#readme"
+  "homepage": "https://github.com/FletcherTools/e2e-helpers#readme",
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [
+    "test",
+    "e2e2"
+  ]
 }
