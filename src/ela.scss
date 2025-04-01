@@ -7,11 +7,47 @@ $label-font: normal 12px monospace;
 $custom-color: #ab88e3;
 $pseudo-color: #d865a9;
 $default-opacity: 0.3;
-$hover-opacity: 0.6;
+$hover-opacity: 0.8;
 
 ///
 
 .ela-active {
+
+  &.ela-frozen {
+    user-select: none;
+  }
+
+  .ela-panel {
+    position: fixed;
+    margin: auto;
+    left: 0.5rem;
+    right: 0.5rem;
+    top: 0.5rem;
+    bottom: auto;
+
+    max-width: max-content;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+
+    color: white;
+    background-color: rgba($custom-color, 0.8);
+    font-size: 13px;
+
+    &:empty:before {
+      content: 'nothing is selected';
+    }
+
+    &.ela-pseudo {
+      background-color: rgba($pseudo-color, $hover-opacity);
+    }
+  }
+
+  &.ela-inverted {
+    .ela-panel {
+      bottom: 0.5rem;
+      top: auto;
+    }
+  }
 
   [#{$test-id-attr}],
   [#{$test-pseudo-id-attr}] {
@@ -21,19 +57,6 @@ $hover-opacity: 0.6;
 
     &:hover { // :not(:has(&:hover))
       overflow: visible;
-
-      &:before {
-        position: absolute !important;
-        z-index: 100 !important;
-        width: max-content !important;
-        padding: 3px 6px !important;
-        line-height: 1 !important;
-        font: $label-font !important;
-        color: white !important;
-        cursor: copy;
-
-        transition: background-color 300ms;
-      }
     }
   }
 
@@ -42,21 +65,10 @@ $hover-opacity: 0.6;
 
     &:hover {
       outline-color: rgba($custom-color, $hover-opacity);
-
-      &:before {
-        background-color: rgba($custom-color, $hover-opacity);
-        content:
-          var(--custom-prefix)
-          attr(#{$test-id-attr})
-          attr(#{$test-params-attr}) !important;
-      }
     }
 
     &:hover:not(:has([#{$test-id-attr}]:hover)) {
       outline-color: $custom-color;
-      &:before {
-        background-color: $custom-color;
-      }
     }
   }
 
@@ -65,37 +77,10 @@ $hover-opacity: 0.6;
 
     &:hover {
       outline-color: rgba($pseudo-color, $hover-opacity);
-
-      &:before {
-        background-color: rgba($pseudo-color, $hover-opacity);
-        content:
-          var(--pseudo-prefix)
-          attr(#{$test-pseudo-id-attr})
-          attr(#{$test-params-attr}) !important;
-      }
-
-      &[#{$test-pseudo-name-attr}]:before {
-        content:
-          var(--pseudo-prefix)
-          attr(#{$test-pseudo-id-attr}) '=' attr(#{$test-pseudo-name-attr})
-          attr(#{$test-params-attr}) !important;
-      }
     }
 
     &:hover:not(:has([#{$test-pseudo-id-attr}]:hover)) {
       outline-color: $pseudo-color;
-      &:before {
-        background-color: $pseudo-color;
-      }
-    }
-  }
-
-  &.ela-inverted {
-    [#{$test-id-attr}],
-    [#{$test-pseudo-id-attr}] {
-      &:before {
-        transform: translateY(-100%);
-      }
     }
   }
 

@@ -59,6 +59,7 @@ const config = {
 ## Usage
 ### Activate
 Use `CTRL+ALT+L` shortcut on your site to activate ELA
+
 ![ELA interface](./docs/ela-interface.png)
 
 Click on a custom- or a pseudo-selector name to copy it to the clipboard and use it in your test cases along with `q` helper.
