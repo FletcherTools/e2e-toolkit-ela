@@ -40,7 +40,7 @@ export function ELAComponent(userConfig: ELAConfig) {
     const {customSelectorPrefix, pseudoSelectorPrefix, pseudoSelectorMap} = config;
 
     let panelEl: HTMLElement;
-    let hoveredElement: HTMLElement;
+    let hoveredElement: HTMLElement | null;
     let attachInterval: number;
 
     let showNested: boolean;
@@ -122,7 +122,7 @@ export function ELAComponent(userConfig: ELAConfig) {
     }
 
     function onHover(e: MouseEvent) {
-        hoveredElement = e.target?.closest(`[${TEST_ID_ATTR}],[${PSEUDO_ID_ATTR}]`);
+        hoveredElement = (e.target as HTMLElement)?.closest(`[${TEST_ID_ATTR}],[${PSEUDO_ID_ATTR}]`);
 
         if (hoveredElement) {
             // console.log('hovered', hoveredElement);
@@ -189,7 +189,7 @@ export function ELAComponent(userConfig: ELAConfig) {
                 case selector.includes(':contains()'): {
                     const targetSelector = innerSelector.replaceAll(':contains()', '');
                     const [targetEl] = targetSelector ? jQuery(el).find(targetSelector).toArray() : [el];
-                    const containedText = (targetEl ?? el).textContent.trim().replace(/\s+/g, ' ');
+                    const containedText = (targetEl ?? el).textContent?.trim().replace(/\s+/g, ' ');
                     const name = `"${containedText}"`;
 
                     el.setAttribute(PSEUDO_NAME_ATTR, name);
@@ -198,7 +198,7 @@ export function ELAComponent(userConfig: ELAConfig) {
               /* Name from an Attr */
                 case selector.includes('['): {
                     const foundEls = innerSelector ? jQuery(el).find(innerSelector).toArray() : [el];
-                    const [,nameAttr] = /\[([a-z0-9_\-]+)\]/.exec(innerSelector)
+                    const [,nameAttr] = /\[([a-z0-9_\-]+)\]/.exec(innerSelector) || [];
                     const name = foundEls.map(targetEl => `"${targetEl.getAttribute(nameAttr)}"`).join('|')
 
                     el.setAttribute(PSEUDO_NAME_ATTR, name);
